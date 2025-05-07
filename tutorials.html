@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>Tutorials - Simple Region Market</title>
+
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Specific examples of how to configure WorldGuard regions for use with SimpleRegionMarket">
+  <meta name="keywords" content="">
+  <meta name="generator" content="Contao Open Source CMS">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+<link rel="stylesheet" href="assets/css/897806f35865.css">
+    <script src="assets/js/037b3de70bc9.js"></script>
+  <!--[if lt IE 9]><script src="assets/html5shiv/3.6.2/html5shiv.js"></script><![endif]-->
+
+</head>
+<body id="top" class="unknown other ">
+
+  <div id="wrapper">
+
+          <header id="header">
+        <div class="inside">
+          
+<div class="stripe"></div>
+<div class="nav-wrapper">
+	<div class="logo-wrapper">
+		<a class="logo" href="http://simpleregionmarket.de">Simple Region Market</a>
+	</div>
+<!-- indexer::stop -->
+<nav class="mod_navigation main block">
+
+  
+  <a href="tutorials.html#skipNavigation1" class="invisible">Skip navigation</a>
+
+  
+<ul class="level_1">
+            <li class="first"><a href="home.html" title="Home" class="first">Home</a></li>
+                <li><a href="permissions.html" title="Permissions">Permissions</a></li>
+                <li><a href="commands.html" title="Commands">Commands</a></li>
+                <li class="submenu trail"><a href="usage.html" title="Usage" class="submenu trail">Usage</a>
+<ul class="level_2">
+            <li class="active first last"><span class="active first last">Tutorials</span></li>
+      </ul>
+</li>
+                <li class="submenu"><a href="configurations.html" title="Config Files" class="submenu">Configurations</a>
+<ul class="level_2">
+            <li class="first"><a href="config.yml.html" title="config.yml" class="first">config.yml</a></li>
+                <li class="last"><a href="limitsyml.html" title="Limits.yml" class="last">limits.yml</a></li>
+      </ul>
+</li>
+                <li class="last"><a href="indev.html" title="InDev" class="last">InDev</a></li>
+      </ul>
+
+  <a id="skipNavigation1" class="invisible">&nbsp;</a>
+
+</nav>
+<!-- indexer::continue -->
+
+</div>        </div>
+      </header>
+    
+    
+    <div id="container">
+      <div id="main">
+        <div class="inside">
+          
+<div class="mod_article block" id="tutorials">
+
+  
+  
+<div class="ce_text block">
+
+      <h1>Tutorials</h1>
+  
+      <p>Here are a few example WorldGuard region configurations that most users will likely need. These examples expect that you know how to read a regions.yml file and define a WG region, set region priority, parents, and flags. These examples are taken from my regions.yml files. You should be able to read them and know the <strong>/rg</strong> commands to get these configurations. Pay close attention to priorities and parents. Child regions inherit Owners, Members, and Flags from the parent region. Flags can be over ridden by the child region, but not Owners and Members. Region members are allowed to build by default. If you want to make it so that only the owner of a region may build you need to set <strong>construct: OWNERS</strong> on the region as in the Hotel Room example.</p>
+<h3 id="w-town">Town</h3>
+<p>This is an example configuration for a Town. All houses, shops and hotels will be children of this town. No one is able to build in the public areas of the town. If you add owners to the town region, they will have full access to ALL the child regions. If you add members to the town region, they might have full access to all the child regions.</p>
+<div class="code-wrapper" data-lexer="matlab">
+<div class="markup-code">
+<pre>    <span class="n">town1</span><span class="p">:</span>
+        <span class="n">type</span><span class="p">:</span> <span class="n">cuboid</span>
+        <span class="n">min</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 275<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 48<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="o">-</span>92<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">max</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 474<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 98<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> 65<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">priority</span><span class="p">:</span> 10
+        <span class="n">flags</span><span class="p">:</span> <span class="p">{</span><span class="n">notify</span><span class="o">-</span><span class="n">leave</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="n">pvp</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span> <span class="n">leaf</span><span class="o">-</span><span class="n">decay</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span> <span class="n">water</span><span class="o">-</span><span class="n">flow</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span>
+            <span class="n">potion</span><span class="o">-</span><span class="n">splash</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span> <span class="n">fire</span><span class="o">-</span><span class="n">spread</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span> <span class="n">lighter</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span> <span class="n">mob</span><span class="o">-</span><span class="n">spawning</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span>
+            <span class="n">exit</span><span class="p">:</span> <span class="n">allow</span><span class="p">,</span> <span class="n">notify</span><span class="o">-</span><span class="n">enter</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="n">lava</span><span class="o">-</span><span class="n">fire</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span> <span class="n">creeper</span><span class="o">-</span><span class="n">explosion</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span>
+            <span class="n">lava</span><span class="o">-</span><span class="n">flow</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span> <span class="n">farewell</span><span class="p">:</span> <span class="s">'Stay safe on your travels, %name%.'</span><span class="p">,</span> <span class="n">tnt</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span>
+            <span class="n">entry</span><span class="p">:</span> <span class="n">allow</span><span class="p">,</span> <span class="n">mob</span><span class="o">-</span><span class="n">damage</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span> <span class="n">enderman</span><span class="o">-</span><span class="n">grief</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span> <span class="n">ice</span><span class="o">-</span><span class="n">melt</span><span class="p">:</span> <span class="n">deny</span><span class="p">,</span>
+            <span class="n">ghast</span><span class="o">-</span><span class="n">fireball</span><span class="p">:</span> <span class="n">deny</span><span class="p">}</span>
+        <span class="n">owners</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="n">members</span><span class="p">:</span> <span class="p">{}</span>
+</pre>
+</div>
+</div>
+<h3 id="w-private-house">Private House</h3>
+<p>This is an example configuration for a Private House. Only the owner and those that he has added as members are able to enter, build and access chests.</p>
+<div class="code-wrapper" data-lexer="matlab">
+<div class="markup-code">
+<pre>    141<span class="n">_n_broad_st</span><span class="p">:</span>
+        <span class="n">type</span><span class="p">:</span> <span class="n">cuboid</span>
+        <span class="n">min</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 335<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 51<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="o">-</span>57<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">max</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 345<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 67<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="o">-</span>42<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">priority</span><span class="p">:</span> 20
+        <span class="n">flags</span><span class="p">:</span>
+            <span class="n">deny</span><span class="o">-</span><span class="n">spawn</span><span class="p">:</span> <span class="p">[</span><span class="n">SILVERFISH</span><span class="p">,</span> <span class="n">SLIME</span><span class="p">,</span> <span class="n">PIG_ZOMBIE</span><span class="p">,</span> <span class="n">CREEPER</span><span class="p">,</span> <span class="n">SPIDER</span><span class="p">,</span> <span class="n">CAVE_SPIDER</span><span class="p">,</span>
+                <span class="n">ENDERMAN</span><span class="p">,</span> <span class="n">ZOMBIE</span><span class="p">,</span> <span class="n">MAGMA_CUBE</span><span class="p">,</span> <span class="n">SKELETON</span><span class="p">,</span> <span class="n">GHAST</span><span class="p">,</span> <span class="n">BLAZE</span><span class="p">]</span>
+            <span class="n">lava</span><span class="o">-</span><span class="n">flow</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">greeting</span><span class="p">:</span> <span class="n">Welcome</span> <span class="n">home</span><span class="p">,</span> <span class="c">%name%.</span>
+            <span class="n">tnt</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">exit</span><span class="o">-</span><span class="n">group</span><span class="p">:</span> <span class="n">ALL</span>
+            <span class="n">entry</span><span class="p">:</span> <span class="n">deny</span>
+            <span class="n">water</span><span class="o">-</span><span class="n">flow</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">potion</span><span class="o">-</span><span class="n">splash</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">lighter</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">entry</span><span class="o">-</span><span class="n">group</span><span class="p">:</span> <span class="n">NON_OWNERS</span>
+            <span class="n">mob</span><span class="o">-</span><span class="n">spawning</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">exit</span><span class="p">:</span> <span class="n">allow</span>
+        <span class="n">owners</span><span class="p">:</span>
+            <span class="n">players</span><span class="p">:</span> <span class="p">[</span><span class="n">exaita</span><span class="p">]</span>
+        <span class="n">members</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">town1</span>
+</pre>
+</div>
+</div>
+<h3 id="w-open-house">Open House</h3>
+<p>This is an example configuration for an Open House. Only the owner and those that he has added as members are able to build and access chests. Everyone is allowed to enter the property and have a look around.</p>
+<div class="code-wrapper" data-lexer="matlab">
+<div class="markup-code">
+<pre>    139<span class="n">_n_bay_dr</span><span class="p">:</span>
+        <span class="n">type</span><span class="p">:</span> <span class="n">cuboid</span>
+        <span class="n">min</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 407<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 51<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="o">-</span>57<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">max</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 423<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 69<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="o">-</span>41<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">priority</span><span class="p">:</span> 20
+        <span class="n">flags</span><span class="p">:</span>
+            <span class="n">deny</span><span class="o">-</span><span class="n">spawn</span><span class="p">:</span> <span class="p">[</span><span class="n">SILVERFISH</span><span class="p">,</span> <span class="n">SLIME</span><span class="p">,</span> <span class="n">PIG_ZOMBIE</span><span class="p">,</span> <span class="n">CREEPER</span><span class="p">,</span> <span class="n">SPIDER</span><span class="p">,</span> <span class="n">CAVE_SPIDER</span><span class="p">,</span>
+                <span class="n">ENDERMAN</span><span class="p">,</span> <span class="n">ZOMBIE</span><span class="p">,</span> <span class="n">MAGMA_CUBE</span><span class="p">,</span> <span class="n">SKELETON</span><span class="p">,</span> <span class="n">GHAST</span><span class="p">,</span> <span class="n">BLAZE</span><span class="p">]</span>
+            <span class="n">lava</span><span class="o">-</span><span class="n">flow</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">greeting</span><span class="p">:</span> <span class="n">Welcome</span> <span class="n">home</span><span class="p">,</span> <span class="c">%name%.</span>
+            <span class="n">tnt</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">entry</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">water</span><span class="o">-</span><span class="n">flow</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">potion</span><span class="o">-</span><span class="n">splash</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">lighter</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">mob</span><span class="o">-</span><span class="n">spawning</span><span class="p">:</span> <span class="n">allow</span>
+            <span class="n">exit</span><span class="p">:</span> <span class="n">allow</span>
+        <span class="n">owners</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="n">members</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">town1</span>
+</pre>
+</div>
+</div>
+<h3 id="w-hotel">Hotel</h3>
+<p>This is an example configuration for an Hotel. There are 2 parts to this building, the main Hotel building and each of the rooms for rent.</p>
+<h4 id="w-hotel-building"><strong>Hotel Building</strong></h4>
+<div class="code-wrapper" data-lexer="matlab">
+<div class="markup-code">
+<pre>    162<span class="n">_s_broad_st</span><span class="p">:</span>
+        <span class="n">type</span><span class="p">:</span> <span class="n">cuboid</span>
+        <span class="n">min</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 335<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 51<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> 42<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">max</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 357<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 69<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> 58<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">priority</span><span class="p">:</span> 20
+        <span class="n">flags</span><span class="p">:</span> <span class="p">{</span><span class="n">notify</span><span class="o">-</span><span class="n">enter</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="n">notify</span><span class="o">-</span><span class="n">leave</span><span class="p">:</span> <span class="n">true</span><span class="p">,</span> <span class="n">entry</span><span class="p">:</span> <span class="n">allow</span><span class="p">,</span> <span class="n">exit</span><span class="p">:</span> <span class="n">allow</span><span class="p">}</span>
+        <span class="n">owners</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="n">members</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">town1</span>
+</pre>
+</div>
+</div>
+<h4 id="w-hotel-room"><strong>Hotel Room</strong></h4>
+<p>Folks that rent the rooms are able to use the chests and furnaces, but are not able to build. We also keep <strong>entry: allow</strong> set so that folks don't get stuck inside when the rental period expires.</p>
+<div class="code-wrapper" data-lexer="matlab">
+<div class="markup-code">
+<pre>    <span class="n">broad_inn_1</span><span class="o">-</span><span class="n">a</span><span class="p">:</span>
+        <span class="n">type</span><span class="p">:</span> <span class="n">cuboid</span>
+        <span class="n">min</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 336<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 59<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> 43<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">max</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 342<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 61<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> 47<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">priority</span><span class="p">:</span> 30
+        <span class="n">flags</span><span class="p">:</span> <span class="p">{</span><span class="n">entry</span><span class="p">:</span> <span class="n">allow</span><span class="p">,</span> <span class="n">construct</span><span class="p">:</span> <span class="n">OWNERS</span><span class="p">,</span> <span class="n">exit</span><span class="p">:</span> <span class="n">allow</span><span class="p">}</span>
+        <span class="n">owners</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="n">members</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="n">parent</span><span class="p">:</span> 162<span class="n">_s_broad_st</span>
+</pre>
+</div>
+</div>
+<h3 id="w-shop">Shop</h3>
+<p>Shops are quite easy really. The entry and exit flags really aren't even needed here, but I add them for special use cases.</p>
+<div class="code-wrapper" data-lexer="matlab">
+<div class="markup-code">
+<pre>    200<span class="n">_hill_ave</span><span class="p">:</span>
+        <span class="n">type</span><span class="p">:</span> <span class="n">cuboid</span>
+        <span class="n">min</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 253<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 52<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="o">-</span>423<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">max</span><span class="p">:</span> <span class="p">{</span><span class="n">x</span><span class="p">:</span> 268<span class="p">.</span>0<span class="p">,</span> <span class="n">y</span><span class="p">:</span> 87<span class="p">.</span>0<span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="o">-</span>408<span class="p">.</span>0<span class="p">}</span>
+        <span class="n">priority</span><span class="p">:</span> 20
+        <span class="n">flags</span><span class="p">:</span> <span class="p">{</span><span class="n">entry</span><span class="p">:</span> <span class="n">allow</span><span class="p">,</span> <span class="n">exit</span><span class="p">:</span> <span class="n">allow</span><span class="p">}</span>
+        <span class="n">owners</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="n">members</span><span class="p">:</span> <span class="p">{}</span>
+        <span class="n">parent</span><span class="p">:</span> <span class="n">town1</span>
+</pre>
+</div>
+</div>  
+  
+  
+</div>
+
+  
+</div>
+        </div>
+              </div>
+
+      
+          </div>
+
+    
+          <footer id="footer">
+        <div class="inside">
+          
+<div class="content block mod_article"><div class="ce_image grid4 center block">
+
+  
+  <figure class="image_container">
+
+          <a href="http://mineconomy.org/" title="Getting help and inspiration from MineConomy" target="_blank">
+    
+    <img src="assets/images/7/mineconomy-logo-71bb05c7.png" width="280" height="42" alt="MineConomy" title="Getting help and inspiration from MineConomy">
+
+          </a>
+    
+    
+  </figure>
+
+</div>
+
+<div class="ce_image grid4 center block">
+
+  
+  <figure class="image_container">
+
+          <a href="https://github.com/SimpleRegionMarket/SimpleRegionMarket/" title="Simple Region Market on GitHub" target="_blank">
+    
+    <img src="assets/images/5/github-logo-ab5276b5.png" width="151" height="42" alt="SRM on GitHub" title="Simple Region Market on GitHub">
+
+          </a>
+    
+    
+  </figure>
+
+</div>
+
+<div class="ce_image grid4 center block">
+
+  
+  <figure class="image_container">
+
+          <a href="http://dev.bukkit.org/bukkit-plugins/simple-region-market/" title="Simple Region Market on BukkitDev" target="_blank">
+    
+    <img src="files/article/footer/bukkit-dev-logo.png" width="280" height="42" alt="SRM on BukkitDev" title="Simple Region Market on BukkitDev">
+
+          </a>
+    
+    
+  </figure>
+
+</div>
+</div>
+<div class="bottom-line">
+	<span class="inside">Copyright © 2025 simpleregionmarket.de | All rights reserved.</span>
+</div>        </div>
+      </footer>
+    
+  </div>
+
+  
+<script src="assets/jquery/ui/1.10.2/jquery-ui.min.js"></script>
+<script>
+(function($) {
+	function updateFooter() {
+		$('#footer').css('bottom', function(index, value) {
+			var contentHeight = $('#header').outerHeight(true) + $('#container').outerHeight(true);
+			var wrapperHeight = $('#wrapper').outerHeight(true);
+			var footerHeight = $('#footer').outerHeight(true);
+			return Math.max(-footerHeight, Math.min(wrapperHeight - contentHeight - footerHeight, 0)) + "px";
+		});
+	}
+	$(window).resize(function() {
+		updateFooter();
+	});
+	$(document).ready(function() {
+		updateFooter();
+	});
+	$('img').load(function() {
+		updateFooter();
+	});
+})(jQuery);
+</script>
+
+<script>
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.thezorro266.com/piwik/';
+    _paq.push(['setTrackerUrl', u + 'piwik.php']);
+    _paq.push(['setSiteId', 6]);
+    var g = document.createElement('script'); g.src = u + 'piwik.js'; g.async = true;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(g, s);
+  })();
+</script>
+
+
+      <script>
+              setTimeout(function(){jQuery.ajax("system/cron/cron.txt",{complete:function(e){var t=e.responseText||0;parseInt(t)<Math.round(+(new Date)/1e3)-86400&&jQuery.ajax("system/cron/cron.php")}})},5e3)
+          </script>
+  
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8">
+  <title>Limits.yml - Simple Region Market</title>
+
+  <meta name="robots" content="index,follow">
+  <meta name="description" content="Describes how to set region limits with SimpleRegionMarket">
+  <meta name="keywords" content="">
+  <meta name="generator" content="Contao Open Source CMS">
+
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+<link rel="stylesheet" href="assets/css/897806f35865.css">
+    <script src="assets/js/037b3de70bc9.js"></script>
+  <!--[if lt IE 9]><script src="assets/html5shiv/3.6.2/html5shiv.js"></script><![endif]-->
+
+</head>
+<body id="top" class="unknown other ">
+
+  <div id="wrapper">
+
+          <header id="header">
+        <div class="inside">
+          
+<div class="stripe"></div>
+<div class="nav-wrapper">
+	<div class="logo-wrapper">
+		<a class="logo" href="http://simpleregionmarket.de">Simple Region Market</a>
+	</div>
+<!-- indexer::stop -->
+<nav class="mod_navigation main block">
+
+  
+  <a href="limitsyml.html#skipNavigation1" class="invisible">Skip navigation</a>
+
+  
+<ul class="level_1">
+            <li class="first"><a href="home.html" title="Home" class="first">Home</a></li>
+                <li><a href="permissions.html" title="Permissions">Permissions</a></li>
+                <li><a href="commands.html" title="Commands">Commands</a></li>
+                <li class="submenu"><a href="usage.html" title="Usage" class="submenu">Usage</a>
+<ul class="level_2">
+            <li class="first last"><a href="tutorials.html" title="Tutorials" class="first last">Tutorials</a></li>
+      </ul>
+</li>
+                <li class="submenu trail"><a href="configurations.html" title="Config Files" class="submenu trail">Configurations</a>
+<ul class="level_2">
+            <li class="sibling first"><a href="config.yml.html" title="config.yml" class="sibling first">config.yml</a></li>
+                <li class="active last"><span class="active last">limits.yml</span></li>
+      </ul>
+</li>
+                <li class="last"><a href="indev.html" title="InDev" class="last">InDev</a></li>
+      </ul>
+
+  <a id="skipNavigation1" class="invisible">&nbsp;</a>
+
+</nav>
+<!-- indexer::continue -->
+
+</div>        </div>
+      </header>
+    
+    
+    <div id="container">
+      <div id="main">
+        <div class="inside">
+          
+<div class="mod_article block" id="limitsyml">
+
+  
+  
+<div class="ce_text grid12 block">
+
+      <h1>Limits.yml</h1>
+  
+      <p><br> This is the configuration file for setting group limits. Take care when making edits. Be sure to check for YAML errors by using <a href="http://yaml-online-parser.appspot.com/">this tool</a> before you commit your edits.<br> Also note that <a href="http://dev.bukkit.org/server-mods/simple-region-market/tickets/370-limits-yml-and-group-inheritance/">Group Inheritance</a> does not work. If a player is in multiple groups, he will have the lowest limit set for the groups he is in. <br> <br> There are 3 main nodes in this file</p>
+<pre>global:
+worlds:
+groups:
+</pre>
+<p><br> <br> The global node defines the TOTAL number (combined rent, buy, bid, let) ANY group may have in ALL worlds.</p>
+<pre>global:
+  global: -1
+</pre>
+<p><br> <br> The worlds node sets world specific limits. No Group may go over the max values set for each world.</p>
+<pre>worlds:
+  world1: -1
+  world2: -1
+  world3: 0
+</pre>
+<p><br> <br> Each group can have a total limit. This would set each groups max regions, regardless of sign type, accross all worlds.</p>
+<pre>groups:
+  group1: 5
+  group2: 5
+  group3: 5
+</pre>
+<p><br> <br> You can further specify world limits per group. This would set a max limit per world for each group regardless of the sign type.</p>
+<pre>groups:
+  group1:
+    worlds:
+      world1: 3
+      world2: 3
+      world3: 3
+</pre>
+<p><br> <br> You can even further specfiy sign type limits in each world for each group. This would set specific limits per sign type per world for each group.</p>
+<pre>groups:
+  group1:
+    worlds:
+      world1:
+        signs:
+          sell: 1
+          rent: 1
+          let: 1
+          bid: 1
+      world2: 5
+</pre>
+<p><br> <br> Now lets put it all together in a real world example.</p>
+<pre>global:
+  global: -1
+worlds:
+  world1: -1
+  world2: -1
+  world3: 0
+  world4: 0
+groups:
+  group1:
+    worlds:
+      world1:
+        signs:
+          rent: 1
+      world2: 0
+  group2:
+    worlds:
+      world1: 0
+      world2: 0
+  group3:
+    worlds:
+      world1:
+        signs:
+          let: 2
+      world2:
+        signs:
+          sell: 3
+          rent: 3
+          let: 5
+          bid: 1
+</pre>  
+  
+  
+</div>
+
+  
+</div>
+        </div>
+              </div>
+
+      
+          </div>
+
+    
+          <footer id="footer">
+        <div class="inside">
+          
+<div class="content block mod_article"><div class="ce_image grid4 center block">
+
+  
+  <figure class="image_container">
+
+          <a href="http://mineconomy.org/" title="Getting help and inspiration from MineConomy" target="_blank">
+    
+    <img src="assets/images/7/mineconomy-logo-71bb05c7.png" width="280" height="42" alt="MineConomy" title="Getting help and inspiration from MineConomy">
+
+          </a>
+    
+    
+  </figure>
+
+</div>
+
+<div class="ce_image grid4 center block">
+
+  
+  <figure class="image_container">
+
+          <a href="https://github.com/SimpleRegionMarket/SimpleRegionMarket/" title="Simple Region Market on GitHub" target="_blank">
+    
+    <img src="assets/images/5/github-logo-ab5276b5.png" width="151" height="42" alt="SRM on GitHub" title="Simple Region Market on GitHub">
+
+          </a>
+    
+    
+  </figure>
+
+</div>
+
+<div class="ce_image grid4 center block">
+
+  
+  <figure class="image_container">
+
+          <a href="http://dev.bukkit.org/bukkit-plugins/simple-region-market/" title="Simple Region Market on BukkitDev" target="_blank">
+    
+    <img src="files/article/footer/bukkit-dev-logo.png" width="280" height="42" alt="SRM on BukkitDev" title="Simple Region Market on BukkitDev">
+
+          </a>
+    
+    
+  </figure>
+
+</div>
+</div>
+<div class="bottom-line">
+	<span class="inside">Copyright © 2025 simpleregionmarket.de | All rights reserved.</span>
+</div>        </div>
+      </footer>
+    
+  </div>
+
+  
+<script src="assets/jquery/ui/1.10.2/jquery-ui.min.js"></script>
+<script>
+(function($) {
+	function updateFooter() {
+		$('#footer').css('bottom', function(index, value) {
+			var contentHeight = $('#header').outerHeight(true) + $('#container').outerHeight(true);
+			var wrapperHeight = $('#wrapper').outerHeight(true);
+			var footerHeight = $('#footer').outerHeight(true);
+			return Math.max(-footerHeight, Math.min(wrapperHeight - contentHeight - footerHeight, 0)) + "px";
+		});
+	}
+	$(window).resize(function() {
+		updateFooter();
+	});
+	$(document).ready(function() {
+		updateFooter();
+	});
+	$('img').load(function() {
+		updateFooter();
+	});
+})(jQuery);
+</script>
+
+<script>
+  var _paq = _paq || [];
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'www.thezorro266.com/piwik/';
+    _paq.push(['setTrackerUrl', u + 'piwik.php']);
+    _paq.push(['setSiteId', 6]);
+    var g = document.createElement('script'); g.src = u + 'piwik.js'; g.async = true;
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(g, s);
+  })();
+</script>
+
+
+      <script>
+              setTimeout(function(){jQuery.ajax("system/cron/cron.txt",{complete:function(e){var t=e.responseText||0;parseInt(t)<Math.round(+(new Date)/1e3)-86400&&jQuery.ajax("system/cron/cron.php")}})},5e3)
+          </script>
+  
+</body>
+</html>

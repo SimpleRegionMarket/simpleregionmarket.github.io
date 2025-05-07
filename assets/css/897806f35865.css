@@ -1,0 +1,514 @@
+/* Contao Open Source CMS, (c) 2005-2013 Leo Feyer, LGPL license */
+body,form{margin:0;padding:0}img{border:0}header,footer,nav,section,aside,article,figure,figcaption{display:block}body{font-size:100.01%}select,input,textarea{font-size:99%}#container,.inside{position:relative}#main,#left,#right{float:left;position:relative}#main{width:100%}#left{margin-left:-100%}#right{margin-right:-100%}#footer{clear:both}@media(max-width:767px){#wrapper{margin:0;width:auto}#container{padding-left:0;padding-right:0}#main,#left,#right{float:none;width:auto}#left{right:0;margin-left:0}#right{margin-right:0}}#main .inside{min-height:1px}img{max-width:100%;height:auto}.ie7 img{-ms-interpolation-mode:bicubic}.ie8 img{width:auto}.ce_gallery ul{margin:0;padding:0;overflow:hidden;list-style:none}.ce_gallery li{float:left}.ce_gallery li.col_first{clear:left}.block{overflow:hidden}.clear,#clear{height:.1px;font-size:.1px;line-height:.1px;clear:both}.invisible{width:0;height:0;left:-1000px;top:-1000px;position:absolute;overflow:hidden;display:inline}.custom{display:block}#container:after,.custom:after{content:".";display:block;height:0;clear:both;visibility:hidden}
+/* Contao Open Source CMS, (c) 2005-2013 Leo Feyer, LGPL license */
+#wrapper{width:960px;margin:0 auto}*[class*="grid"]{float:left;margin-left:10px;margin-right:10px;display:inline}.mod_article *[class*="ce_"],.mod_article *[class*="mod_"]{margin-left:10px;margin-right:10px}.mod_article .mod_newsreader,.mod_article .mod_eventreader{margin-left:0;margin-right:0}.mod_article *[class*="layout_"]>*,.mod_article *[class*="event_"]>*{margin-left:10px;margin-right:10px}.mod_article.grid1,.mod_article.grid2,.mod_article.grid3,.mod_article.grid4,.mod_article.grid5,.mod_article.grid6,.mod_article.grid7,.mod_article.grid8,.mod_article.grid9,.mod_article.grid10,.mod_article.grid11,.mod_article.grid12{margin-left:0;margin-right:0}#main .inside{overflow:hidden}.grid1{width:60px}.grid2{width:140px}.grid3{width:220px}.grid4{width:300px}.grid5{width:380px}.grid6{width:460px}.grid7{width:540px}.grid8{width:620px}.grid9{width:700px}.grid10{width:780px}.grid11{width:860px}.grid12{width:940px}.mod_article.grid1{width:80px}.mod_article.grid2{width:160px}.mod_article.grid3{width:240px}.mod_article.grid4{width:320px}.mod_article.grid5{width:400px}.mod_article.grid6{width:480px}.mod_article.grid7{width:560px}.mod_article.grid8{width:640px}.mod_article.grid9{width:720px}.mod_article.grid10{width:800px}.mod_article.grid11{width:880px}.mod_article.grid12{width:960px}.offset1{margin-left:90px}.offset2{margin-left:170px}.offset3{margin-left:250px}.offset4{margin-left:330px}.offset5{margin-left:410px}.offset6{margin-left:490px}.offset7{margin-left:570px}.offset8{margin-left:650px}.offset9{margin-left:730px}.offset10{margin-left:810px}.offset11{margin-left:890px}.offset12{margin-left:970px}@media(min-width:768px) and (max-width:979px){#wrapper{width:744px}.grid1{width:42px}.grid2{width:104px}.grid3{width:166px}.grid4{width:228px}.grid5{width:290px}.grid6{width:352px}.grid7{width:414px}.grid8{width:476px}.grid9{width:538px}.grid10{width:600px}.grid11{width:662px}.grid12{width:724px}.mod_article.grid1{width:62px}.mod_article.grid2{width:124px}.mod_article.grid3{width:186px}.mod_article.grid4{width:248px}.mod_article.grid5{width:310px}.mod_article.grid6{width:372px}.mod_article.grid7{width:434px}.mod_article.grid8{width:496px}.mod_article.grid9{width:558px}.mod_article.grid10{width:620px}.mod_article.grid11{width:682px}.mod_article.grid12{width:744px}.offset1{margin-left:72px}.offset2{margin-left:134px}.offset3{margin-left:196px}.offset4{margin-left:258px}.offset5{margin-left:320px}.offset6{margin-left:382px}.offset7{margin-left:444px}.offset8{margin-left:506px}.offset9{margin-left:568px}.offset10{margin-left:630px}.offset11{margin-left:692px}.offset12{margin-left:754px}}@media(max-width:767px){#wrapper{width:auto}*[class*="grid"]{float:none!important;display:block!important;width:auto!important}}
+/* Contao Open Source CMS, (c) 2005-2013 Leo Feyer, LGPL license */
+body,div,h1,h2,h3,h4,h5,h6,p,blockquote,pre,code,ol,ul,li,dl,dt,dd,figure,table,th,td,form,fieldset,legend,input,textarea{margin:0;padding:0}table{border-spacing:0;border-collapse:collapse}caption,th,td{text-align:left;text-align:start;vertical-align:top}abbr,acronym{font-variant:normal;border-bottom:1px dotted #666;cursor:help}blockquote,q{quotes:none}fieldset,img{border:0}ul{list-style-type:none}sup{vertical-align:text-top}sub{vertical-align:text-bottom}del{text-decoration:line-through}ins{text-decoration:none}body{font:12px/1 "Lucida Grande","Lucida Sans Unicode",Verdana,sans-serif;color:#000}input,button,textarea,select{font-family:inherit;font-size:99%;font-weight:inherit}pre,code{font-family:Monaco,monospace}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}h1{font-size:1.8333em}h2{font-size:1.6667em}h3{font-size:1.5em}h4{font-size:1.3333em}table{font-size:inherit}caption,th{font-weight:bold}a{color:#00f}h1,h2,h3,h4,h5,h6{margin-top:1em}h1,h2,h3,h4,h5,h6,p,pre,blockquote,table,ol,ul,form{margin-bottom:12px}
+/** General Layout */
+@font-face {
+	font-family: 'Minecraft';
+	font-style: normal;
+	font-weight: 400;
+	src:	url("../../files/layout/coolblue/./fonts/minecraft.woff") format('woff'),
+			url("../../files/layout/coolblue/./fonts/minecraft.ttf") format('truetype');
+}
+
+body {
+	font: 11pt 'Open Sans';
+	background: #ffffff;
+}
+
+#wrapper {
+	position: absolute;
+	width: 100%;
+	min-height: 100%;
+}
+
+#container,
+nav.main,
+#footer .bottom-line .inside {
+	max-width: 960px;
+	margin: 0 auto;
+}
+
+/** Article Layout */
+.image_container {
+	margin-bottom: 12px;
+}
+
+.image_container a img {
+	display: block;
+}
+
+#container {
+	padding-top: 22px;
+}
+
+#container h1 {
+	font-weight: bold;
+	font-size: 1.5em;
+	margin: 2px 0 16px;
+}
+
+#container h2 {
+	font-weight: bold;
+	font-size: 1.2em;
+	margin: 2px 0 14px;
+}
+
+#container h3 {
+	font-weight: normal;
+	font-size: 1.2em;
+	margin: 2px 0 12px;
+}
+
+#container h4 {
+	font-weight: normal;
+	font-size: 1em;
+	margin: 2px 0 12px;
+}
+
+#container a {
+	color: #0062a5;
+	text-decoration: underline;
+	
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+#container a:hover,
+#container a:active,
+#container a:focus {
+	color: #0069b1;
+	text-decoration: none;
+}
+
+#container p {
+	margin: 0 0 12px;
+}
+
+#container pre {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+#container ol {
+	padding: 0 0 0 40px;
+}
+
+#container ul {
+	padding: 0 0 0 20px;
+	
+	list-style: square outside none;
+}
+
+#container table {
+	margin: 0 0 12px;
+}
+
+#container tr {
+	background: rgb(230, 239, 246);
+	background: rgba(0, 98, 165, 0.04);
+}
+
+#container .plain tr {
+	background: transparent;
+}
+
+#container tr:hover,
+#container tr:focus {
+	background: rgb(204, 223, 237);
+	background: rgba(0, 98, 165, 0.16);
+}
+
+#container .plain tr:hover,
+#container .plain tr:focus {
+	background: transparent;
+}
+
+#container th {
+	border-bottom: 2px solid #ffffff;
+	
+	color: #ffffff;
+	background: #0062a5;
+}
+
+#container .plain th {
+	border-bottom: none;
+	
+	color: inherit;
+	background: transparent;
+}
+
+#container th,
+#container td {
+	padding: 2px 4px;
+}
+
+#container .plain th,
+#container .plain td {
+	padding: 0;
+}
+
+.mod_article [class*="ce_"],
+.mod_article [class*="mod_"] {
+	margin-bottom: 12px;
+}
+
+.mod_article .block > .yellow {
+	padding: 10px 10px 0;
+	border: 1px solid rgb(255, 238, 0);
+	border-color: rgba(255, 238, 0, 1);
+	
+	background: rgb(243, 237, 149);
+	background: rgba(243, 237, 149, 0.1);
+}
+
+.mod_article .box_attention {
+	padding: 12px 0;
+
+	text-shadow: rgb(238, 12, 0);
+
+	background: rgb(238, 12, 0);
+	background: linear-gradient(to bottom, rgb(238, 12, 0) 0%,rgb(207, 10, 0) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ee0c00', endColorstr='#cf0a00',GradientType=0 );
+}
+
+#container .mod_article .box_attention > * {
+	margin-top: 0;
+	margin-bottom: 12px;
+	padding: 0 12px;
+}
+
+#container .mod_article .box_attention > *:last-child {
+	margin-bottom: 0;
+}
+
+/** Form Design */
+.ce_form br {
+	clear: both;
+}
+
+.ce_form span.mandatory {
+	padding-left: 2px;
+
+	color: #f00f00;
+}
+
+.ce_form input, .ce_form textarea, .ce_form label {
+	display: block;
+}
+
+.ce_form input {
+	width: 25%;
+}
+
+.ce_form input.radio {
+	width: 22px;
+}
+
+.ce_form textarea {
+	min-width: 50%;
+	max-width: 100%;
+}
+
+.ce_form .radio_container input,
+.ce_form .radio_container label {
+	display: block;
+	float: left;
+
+	height: 22px;
+
+	line-height: 22px;
+}
+
+.ce_form .radio_container span {
+	display: block;
+	overflow: hidden;
+}
+
+.ce_form .radio_container span.mandatory {
+	display: inline;
+	overflow: auto;
+}
+
+.ce_form .captcha {
+	float: left;
+}
+
+.ce_form .captcha_text {
+	padding-left: 6px;
+}
+
+.ce_form .submit_container {
+	margin-top: 24px;
+}
+
+/** Header Design */
+#header {
+	z-index: 8;
+
+	background: #005691;
+}
+
+#header .inside {
+	z-index: 8;
+}
+
+#header .stripe {
+	position: relative;
+	width: 100%;
+	height: 8px;
+	z-index: 12;
+	
+	background: #0062a5;
+	background: linear-gradient(to bottom,  #0062a5 0%,#0069b1 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0062a5', endColorstr='#0069b1',GradientType=0 );
+}
+
+#header .nav-wrapper {
+	position: relative;
+	width: 100%;
+	padding-top: 20px;
+	z-index: 10;
+	
+	box-shadow: 0 0 8px 2px rgba(0,0,0,0.2);
+	background: #ffffff;
+	background: linear-gradient(to bottom,  #ffffff 0%,#f5f5f5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#f5f5f5',GradientType=0 );
+}
+
+#header .logo {
+	display: block;
+	
+	color: #292929;
+	text-decoration: none;
+	text-align: center;
+	text-shadow: 2px 2px 0 #ffffff;
+	font: 2em/57px 'Minecraft';
+	
+	-webkit-transition: color 0.3s;
+	transition: color 0.3s;
+}
+
+#header .logo:active,
+#header .logo:hover,
+#header .logo:focus {
+	outline: 0;
+	
+	color: #0069b1;
+}
+
+/** Main Navigation Design */
+nav.main {
+	height: 121px;
+
+	text-align: center;
+}
+
+nav.main,
+nav.main ul,
+nav.main li {
+	z-index: 11;
+}
+
+nav.main .level_1 {
+	display: inline-block;
+	margin: 0;
+
+	text-shadow: 1px 1px 0 #ffffff;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+nav.main .level_1 li {
+	float: left;
+
+	text-align: left;
+
+	background: #dedede;
+	background: linear-gradient(to bottom, #fbfbfb 0%, #dedede 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#dedede',GradientType=0 );
+}
+
+.ie7 nav.main .level_1 li {
+	background: transparent;
+	filter: none;
+}
+
+nav.main .level_1 span,
+nav.main .level_1 a {
+	display: block;
+	padding: 50px 23px;
+
+	color: #292929;
+	text-decoration: none;
+	line-height: 21px;
+
+	background: #ffffff;
+	background: linear-gradient(to bottom,  #fbfbfb 0%,#f5f5f5 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#f5f5f5',GradientType=0 );
+}
+
+.ie7 nav.main .level_1 span,
+.ie7 nav.main .level_1 a {
+	background: transparent;
+	filter: none;
+}
+
+nav.main .level_1 .active {
+	color: #0062a5;
+	cursor: default;
+}
+
+nav.main .level_1 a:active,
+nav.main .level_1 a:hover,
+nav.main .level_1 a:focus {
+	padding: 50px 22px;
+	margin: 0 1px;
+	outline: 0;
+
+	background: #f2f2f2;
+	background: linear-gradient(to bottom, #fbfbfb 0%, #e8e8e8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#e8e8e8',GradientType=0 );
+}
+
+nav.main .level_1 ul {
+	position: absolute;
+	left: -999em;
+	float: none;
+
+	min-width: 177px;
+
+	padding-bottom: 3px;
+	border-radius: 0 0 5px 5px;
+
+	text-shadow: 1px 1px 0 rgb(0, 86, 145);
+	text-transform: none;
+	text-decoration: none;
+	font-weight: normal;
+
+	box-shadow: 0 1px 8px rgba(15, 15, 15, 0.4);
+	background: rgb(0, 86, 145);
+	background: rgba(0, 86, 145, 0.8);
+
+	z-index:
+}
+
+nav.main .level_1 li:hover ul {
+	left: auto;
+}
+
+nav.main .level_2 li {
+	background: transparent;
+	float: none;
+}
+
+nav.main .level_2 li.last {
+	padding-bottom: 0;
+}
+
+nav.main .level_2 li span,
+nav.main .level_2 li a {
+	display: block;
+	padding: 6px 8px;
+
+	color: #DEDEDE;
+	text-decoration: none;
+
+	background: rgba(0, 0, 0, 0.1);
+}
+
+nav.main .level_2 li a:active,
+nav.main .level_2 li a:hover,
+nav.main .level_2 li a:focus {
+	padding: 6px 8px;
+	margin: 0;
+	outline: 0;
+
+	color: #F0F0F0;
+	text-decoration: underline;
+
+	background: rgba(127, 127, 127, 0.1);
+}
+
+nav.main .level_2 li .active {
+	color: #F0F0F0;
+	background: rgba(127, 127, 127, 0.1);
+}
+
+/** Footer Design */
+#footer {
+	position: absolute;
+	bottom: -100%;
+	width: 100%;
+	min-height: 66px;
+	
+	font-size: 0.8em;
+	color: #99bbd3;
+	
+	background: #005691;
+}
+
+#footer .inside {
+	position: static;
+}
+
+#footer .content {
+	margin: 0 auto 36px;
+	padding-top: 24px;
+	max-width: 960px;
+
+	overflow: hidden;
+}
+
+#footer .content > .block {
+	margin-bottom: 12px;
+}
+
+#footer .content .center > .image_container {
+	display: block;
+	overflow: hidden;
+
+	text-align: center;
+}
+
+#footer .content .center > .image_container a {
+	display: inline-block;
+	margin: 0 auto;
+}
+
+#footer .content .image_container img {
+	filter: grayscale(0.5);
+}
+
+#footer .bottom-line {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	
+	font-size: 0.9em;
+	color: #5a89aa;
+	
+	background: #004e84;
+}
+
+#footer .bottom-line .inside {
+	display: block;
+	padding: 10px 0 10px 10px;
+}
+
+/** Responsive */
+@media(min-width:768px) and (max-width:979px) {
+	#header .logo-wrapper,
+	#container,
+	nav.main,
+	#footer .bottom-line .inside {
+		max-width: 744px;
+	}
+
+	#footer .content {
+		max-width: 744px;
+	}
+}
+
